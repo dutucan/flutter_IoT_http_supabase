@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -42,26 +43,39 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     print(state?'led on':'led off');
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Controller'),
-        centerTitle: true,
-        backgroundColor: state?Colors.green:Colors.red,
-        foregroundColor: Colors.white,
-      ),
+      backgroundColor: Colors.black12,
       body: Center(
-        child: InkWell(
-          onTap: (){
-            setState(() {
-              state = !state;
-
-              toggleLed(state);
-            });
-          },
-          child: Image.asset(
-              height: 300,
-              state?'assets/images/on.png':'assets/images/off.png'),
+        child: Card(
+          child: Container(
+            height: 300,
+            width: 300,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.white,
+                  spreadRadius: 2,
+                  blurRadius: 5
+                )
+              ]
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                state?Lottie.asset('assets/light.json',height: 200):SizedBox(),
+                Switch(
+                  activeThumbColor: Colors.white,
+                  activeTrackColor: Colors.green.shade700,
+                  value: state,
+                  onChanged: (value) {
+                      toggleLed(value);
+                },
+                )
+              ],
+            ),
+          ),
         ),
-      ),
+      )
     );
   }
 }

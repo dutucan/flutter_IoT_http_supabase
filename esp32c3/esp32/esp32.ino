@@ -3,12 +3,12 @@
 #include <ArduinoJson.h>
 
 const char* ssid = "GO HOME";
-const char* password = "password";
+const char* password = "gohome123";
 
 
 // URL đầy đủ phải bao gồm: /rest/v1/ + tên_bảng + tham số lọc
-const char* supabase_url = "supabase_url";
-const char* supabase_key = "supabase_API_NON_KEY";
+const char* supabase_url = "https://mvlelrdvknhdqxhzzpah.supabase.co/rest/v1/devices?select=is_on&id=eq.1";
+const char* supabase_key = "API_NON_KEY";
 
 
 #define LED_PIN 8 
